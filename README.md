@@ -1,52 +1,124 @@
-# API Academia Aulas
+# 🏋️‍♂️ API Academia Aulas
 
-API desenvolvida em .NET 8 para gerenciamento de alunos, aulas e agendamentos em uma academia. Permite o cadastro de alunos e aulas, agendamento de participa��o, al�m de relat�rios mensais e gerais.
+API desenvolvida em **.NET 8** para gerenciamento de **alunos, aulas e agendamentos** em uma academia.  
+Permite o cadastro de alunos e aulas, agendamento de participação, além de relatórios mensais e gerais.
 
-## Tecnologias Utilizadas
+---
 
-- C# 12
-- ASP.NET Core Minimal API
-- Entity Framework Core (SQLite)
-- Swagger para documenta��o
+## 🚀 Tecnologias Utilizadas
+- **C# 12**
+- **ASP.NET Core Minimal API**
+- **Entity Framework Core (SQLite)**
+- **Swagger (OpenAPI)** para documentação
 
-## Funcionalidades
+---
 
-- **Cadastro de Alunos:**  
-  `POST /alunos`  
-  Cadastra um novo aluno informando nome e tipo de plano.
+## 📌 Funcionalidades
 
-- **Cadastro de Aulas:**  
-  `POST /aulas`  
-  Cadastra uma nova aula informando tipo, data/hora e capacidade m�xima.
+### 👤 Cadastro de Alunos
+- **POST /alunos**  
+  Cadastra um novo aluno informando **nome** e **tipo de plano**.
 
-- **Agendamento de Aula:**  
-  `POST /aulas/{aulaId}/agendar/{alunoId}`  
-  Agenda um aluno em uma aula espec�fica.
+Exemplo de requisição:
+```json
+{
+  "nome": "João Silva",
+  "planoTipo": 1
+}
+```
 
-- **Relat�rio Mensal do Aluno:**  
+---
+
+### 📚 Cadastro de Aulas
+- **POST /aulas**  
+  Cadastra uma nova aula informando **tipo**, **data/hora** e **capacidade máxima**.
+
+Exemplo de requisição:
+```json
+{
+  "tipo": "Musculação",
+  "dataHora": "2025-09-10T19:00:00",
+  "capacidadeMaxima": 20
+}
+```
+
+---
+
+### 📝 Agendamento de Aula
+- **POST /aulas/{aulaId}/agendar/{alunoId}**  
+  Agenda um aluno em uma aula específica.
+
+---
+
+### 📊 Relatórios
+
+- **Relatório Mensal do Aluno**  
   `GET /alunos/{id}/relatorio?ano={ano}&mes={mes}`  
-  Retorna o total de aulas agendadas no m�s e os tipos de aula mais frequentes para o aluno.
+  ➝ Retorna o total de aulas no mês e os tipos mais frequentes.
 
-- **Relat�rio Geral dos Alunos:**  
+- **Relatório Geral dos Alunos**  
   `GET /alunos/relatoriogeral`  
-  Retorna o resumo de agendamentos de todos os alunos no m�s atual.
+  ➝ Resumo de agendamentos de todos os alunos no mês atual.
 
-- **Relat�rio de Aulas:**  
+- **Relatório de Aulas**  
   `GET /aulas/relatorio`  
-  Lista todas as aulas cadastradas.
+  ➝ Lista todas as aulas cadastradas.
 
-## Como Executar
+---
 
-1. **Pr�-requisitos:**  
-   - .NET 8 SDK  
-   - SQLite
+## 🛠️ Como Executar
 
-2. **Configura��o:**  
-   O banco de dados � criado automaticamente como `academia.db` na raiz do projeto.
+### Pré-requisitos
+- [.NET 8 SDK](https://dotnet.microsoft.com/download)
+- [SQLite](https://www.sqlite.org/)
 
-3. **Execu��o:**  
-   - Aplique as migra��es para criar/atualizar o banco de dados: ```
- dotnet ef database update
- ```   - Inicie a aplica��o: ```
- dotnet run
- ```
+### Passos
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/api-academia-aulas.git
+   cd api-academia-aulas
+   ```
+
+2. Aplique as migrações e crie o banco de dados:
+   ```bash
+   dotnet ef database update
+   ```
+
+3. Inicie a aplicação:
+   ```bash
+   dotnet run
+   ```
+
+4. Acesse o Swagger:
+   ```
+   https://localhost:5001/swagger
+   ```
+
+---
+
+## 📂 Estrutura do Projeto
+```
+/src
+  ├── Application    # DTOs e regras de aplicação
+  ├── Domain         # Entidades e enums
+  ├── Infrastructure # Contexto EF Core e migrações
+  └── Program.cs     # Endpoints (Minimal API)
+```
+
+---
+
+## 🔮 Melhorias Futuras
+- Implementar **autenticação e autorização** (JWT).
+- Adicionar **validações mais robustas** (ex.: evitar agendamento duplicado).
+- Criar **cancelamento e remarcação de aulas**.
+- Exportar relatórios em **PDF/Excel**.
+- Implementar **notificações por e-mail** para lembrete de aulas.
+- Criar **testes automatizados** (xUnit, NUnit ou MSTest).
+- Adicionar suporte a **bancos de dados mais robustos** (SQL Server, PostgreSQL).
+- Deploy em **Docker** para facilitar execução.
+
+---
+
+## 📜 Licença
+Este projeto está sob a licença MIT.  
+Sinta-se livre para usar, modificar e distribuir.
