@@ -17,16 +17,14 @@ public class SchedulingService
         var aula = await _db.Aulas.FindAsync(aulaId);
         if (aula is null) return (false, "Aula não encontrada.");
 
-        // já agendado?
         if (await _db.Agendamentos.AnyAsync(a => a.AlunoId == alunoId && a.AulaId == aulaId))
             return (false, "Aluno já está agendado nessa aula.");
 
-        // capacidade
         var ocupacao = await _db.Agendamentos.CountAsync(a => a.AulaId == aulaId);
         if (ocupacao >= aula.CapacidadeMaxima)
-            return (false, "Capacidade máxima atingida.");
+            return (false, "Capacidade máxima: "+ocupacao+" da aula atingida.");
 
-        // limite do plano
+        // limite do plan
         var totalNoMes = await _db.Agendamentos
             .Include(x => x.Aula)
             .Where(x => x.AlunoId == alunoId &&

@@ -19,8 +19,7 @@ namespace AgendamentoAcademia.Dominio
         {
             Plano.Mensal => 12,
             Plano.Trimestral => 20,
-            Plano.Anual => 30,
-            _ => 0
+            Plano.Anual => 30
         };
     }
 }
